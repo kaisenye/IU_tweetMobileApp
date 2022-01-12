@@ -1,8 +1,11 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:tweet_mobile_app/auth/signup.dart';
+import 'package:provider/provider.dart';
+import 'package:tweet_mobile_app/models/user.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:tweet_mobile_app/screens/wrapper.dart';
+import 'package:tweet_mobile_app/services/auth.dart';
+import 'screens/auth/firebase_options.dart';
 
 
 
@@ -34,14 +37,10 @@ class MyApp extends StatelessWidget {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-              visualDensity: VisualDensity.adaptivePlatformDensity 
-            ), 
-            home: const SignUp(),
-          ); 
+          return StreamProvider<UserModel>.value(
+            value: AuthService().user,
+            child: const MaterialApp(home: Wrapper()),
+            );
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
