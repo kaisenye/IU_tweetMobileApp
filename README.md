@@ -1,1 +1,1 @@
-# Tweet Mobile App - developed using flutter
+# Tweet Mobile App for Indiana University - developed using flutter
