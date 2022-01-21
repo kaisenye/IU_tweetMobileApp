@@ -13,15 +13,20 @@ class Home extends StatelessWidget {
     final AuthService _authService = AuthService();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red[900],
         title: const Text("Home"),
         actions:  <Widget>[
-          ElevatedButton.icon(
-            label: const Text('SignOut'),
-            icon: const Icon(Icons.person),
+          TextButton.icon(
+            label: const Text('Sign Out', style: TextStyle(color:Colors.white)),
+            icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () async {_authService.signOut();}, 
             ),
         ],
-      )
+      ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {Navigator.pushNamed(context, '/add');},
+      backgroundColor: Colors.red[900],
+      child: const Icon(Icons.add),),
     );
   }
 }

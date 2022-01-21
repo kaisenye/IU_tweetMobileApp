@@ -9,20 +9,20 @@ import 'package:tweet_mobile_app/models/user.dart';
 class AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   
-  UserModel? _userFromFirebaseUser(User user){
+  UserModel? _userFromFirebaseUser(User? user){
     // ignore: unnecessary_null_comparison
     return user != null ? UserModel(id: user.uid) : null;
   }
 
 
   // user stream with provider
-  Stream<UserModel> get user{
+  Stream<UserModel?> get user{
     return auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
 
   // signIn
-  Future signIn(email, password) async {
+  Future signUp(email, password) async {
     try {
       User user = (await auth.createUserWithEmailAndPassword(
         email: email, password: password)) as User;
@@ -44,7 +44,7 @@ class AuthService {
   }
 
   // signUp
-  Future signUp(email, password) async {
+  Future signIn(email, password) async {
     try {
       User user = (await auth.signInWithEmailAndPassword(
         email: email, password: password)) as User;
@@ -64,6 +64,7 @@ class AuthService {
     try{
       return await auth.signOut();
     }catch(e){
+      // ignore: avoid_print
       print(e.toString());
       return null;
     }
