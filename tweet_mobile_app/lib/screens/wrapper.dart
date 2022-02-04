@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tweet_mobile_app/models/user.dart';
 import 'package:tweet_mobile_app/screens/auth/signup.dart';
 import 'package:tweet_mobile_app/screens/main/Home.dart';
+import 'package:tweet_mobile_app/screens/main/profile/profile.dart';
 import 'main/posts/add.dart';
 
 
@@ -24,7 +25,8 @@ class Wrapper extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Home(),
-        '/add': (context) =>  Add(),
+        '/add': (context) =>  const Add(),
+        '/profile': (context) =>  const Profile(),
       },
     );
   }
